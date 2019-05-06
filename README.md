@@ -5,6 +5,11 @@ This repository contains the raw files and rendered poster describing the [`reco
 
 To view the poster, go to [https://lcolladotor.github.io/recount-brain-bog19/](https://lcolladotor.github.io/recount-brain-bog19/) or alternatively open the [PDF file](recount-brain-bog19.pdf) which was created using the "print" option with Google Chrome Version 73.0.3683.103 (Official Build) (64-bit).
 
+![](Figures/qr_imglg.png)
+
+
+## Reproducibility and Citation
+
 
 ```{r}
 > ## Reproducibility information:
