@@ -4,37 +4,43 @@ poster_height: "48in"
 poster_width: "36in"
 font_family: 'Rasa'
 #ESSENTIALS
-title: '**A Better Reproducible Poster Title**'
+title: '**_recount-brain_: a curated repository of human brain RNA-seq datasets metadata**'
 author:
-  - name: '**W. Brent Thorne**'
-    affil: 1,*
+  - name: Ashkaun Razmara
+    affil: 1
+  - name: Shannon E Ellis
+    affil: 2
+  - name: Dustin J Sokolowski
+    affil: 3
+  - name: Sean Davis
+    affil: 4
+  - name: Michael D Wilson
+    affil: 3
+  - name: Jeffrey Leek
+    affil: 5
+  - name: Andrew E Jaffe
+    affil: 5,6
+  - name: '**Leonardo Collado-Torres**'
+    affil: 6,*
     main: true
-    orcid: '0000-0002-1099-3857'
-    twitter: brentthorne18 
-    email: bthorne2@brocku.ca
-  - name: Another G. Contributor
-    affil: 2
-    main: false
-    email: 'ag.con@posterdown.net'
-  - name: Person Three
-    affil: 3
-  - name: Person Four
-    affil: 2
-  - name: Person Five
-    affil: 3
-  - name: Person Six
-    affil: 3
-  - name: A. Seventh Author
-    affil: 2
+    orcid: '0000-0003-2140-308X'
+    twitter: fellgernon
+    email: leo.collado@libd.org
 affiliation:
   - num: 1
-    address: Department of Earth Science, Brock University
+    address: Frank H. Netter MD School of Medicine at Quinnipiac University, North Haven, CT
   - num: 2
-    address: Department of Graphics and Layouts, University of Posters; Canada
+    address: Department of Cognitive Science Department, University of California San Diego, La Jolla, CA
   - num: 3
-    address: Another Institute of a place where work gets done, Earth, Milky Way
+    address: Department of Molecular Genetics, University of Toronto
+  - num: 4
+    address: Center for Cancer Research, National Cancer Institute, NIH
+  - num: 5
+    address: Department of Biostatistics, Johns Hopkins Bloomberg School of Public Health, Baltimore
+  - num: 6
+    address: Lieber Institute for Brain Development, Johns Hopkins Medical Campus, Baltimore
 #STYLE & FORMATTING
-title_textsize: "125pt"
+title_textsize: "70pt"
 author_textsize: "1.17em"
 authorextra_textsize: "35px"
 affiliation_textsize: "25px"
@@ -46,15 +52,14 @@ middle_textcol: "#FFFFFF"
 middle:textalpha: 90
 middle_fontsize: "150px"
 main_findings:
-  - "Make **better posters** with RMarkdown + **posterdown**."
-  - "Transition from **poster** to **manuscript** with ease!"
-logoleft_name: "Figures/posterdownlogo.png"
-logocenter_name: "Figures/qr-code-black.png"
-logoright_name: "Figures/posterdownlogo.png"
+  - " ![](Figures/recount_brain.png) Analysis-ready human curated sample metadata for brain RNA-seq studies"
+logoleft_name: "Figures/LIBD_logo.jpg"
+logocenter_name: ""
+logoright_name: "Figures/qr_imglg.png"
 #---POSTER BODY OPTIONS---#
-primary_colour: '#0b4545'
-secondary_colour: '#008080'
-accent_colour: "#cc0000"
+primary_colour: '#DA2536'
+secondary_colour: '#FF6771'
+accent_colour: "#5d19c4"
 body_bgcol: "#ffffff"
 body_textsize: "45px"
 body_textcol: "#000000"
@@ -66,6 +71,7 @@ output:
     pandoc_args: --mathjax
     highlight: espresso
     number_sections: true
+    template: template.html
 bibliography: MyBib.bib
 ---
 ```{r setup, include=FALSE}
@@ -81,49 +87,59 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-Welcome to `posterdown` ! This is my attempt to provide a semi-smooth workflow for those who wish to take their R Markdown skills to the conference world. Most features from R Markdown are available in this package such as Markdown section notation, figure captioning, and even citations like this one [@rmarkdown]. The rest of this example poster will show how you can insert typical conference poster features into your own document. 
-
-## Objectives
-
-1. Easy to use reproducible poster design. 
-2. Integration with R Markdown.
-3. Easy transition from `posterdown` to `thesisdown` or `rticles` [@rticles; @thesisdown].
+1. Uniformly-processed RNA-seq is available in `recount2` [@collado2017] and other projects;
+2. Sample metadata from SRA is inconsistent, thus re-using this public data is challenging;
+3. Metadata can be predicted from expression [@ellis2018] and mapped to ontologies [@bernstein2017].
 
 # Methods
 
-This package uses the same workflow approach as the R Markdown you know and love. Basically it goes from RMarkdown > Knitr > Markdown > Pandoc > HTML/CSS > PDF. You can even use the bibliography the same way [@turnerControlsWaterBalance2014].
+We identified SRA studies present in `recount2` that had at least 4 samples with at least 70% of them were predicted to correspond to the brain using `phenopredict` (v0.0.03) [@ellis2018]. Figure 6 of [@razmara2019] shows the reproducible curation workflow we followed that briefly involved: creating a list of metadata variables of interest, documenting which part of the paper/supplement the information came from, and any custom modifications. We merged `recount-brain` with GTEx and TCGA brain sample metadata and linked to controlled vocabulary terms for Brodmann region, tissue and disease.
+
+
 
 # Results
 
-Usually you want to have a nice table displaying some important results that you have calculated. In `posterdown` this is as easy as using the `kable` table formatting you are probably use to as per typical R Markdown formatting.
+In total, there are 6,547 samples with metadata in `recount-brain` with 5,330 (81.4%) present in recount2 from 62 SRA studies, GTEx (n=1,409) and TCGA (n=707). The curated metadata can be interactively explored through [jhubiostatistics.shinyapps.io/recount-brain/](https://jhubiostatistics.shinyapps.io/recount-brain/). Figure \@ref(fig:figure1) exemplifies some of the metadata information available for these studies.
 
-I suggesting checking out the `kableExtra` package and its in depth documentation on customizing these tables found [here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) [@kableExtra2019]. You can reference tables like so: Table \@ref(tab:mytable). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat augue at velit tincidunt semper. Donec elementum porta posuere. Nullam interdum, odio at tincidunt feugiat, turpis nisi blandit eros, eu posuere risus felis non quam. Nam eget lorem odio. Duis et aliquet orci. Phasellus nec viverra est.
-
-```{r mytable, out.width='80%', fig.align='center'}
-knitr::kable(iris[1:10, 1:4], caption = 'Table caption.', align = 'c')
+```{r figure1, out.width='100%', fig.cap='Overview of some recount-brain sample metadata variables'}
+knitr::include_graphics('Figures/Figure-1.png')
 ```
 
-Or with figures: Figure \@ref(fig:standard-plot), or Figure \@ref(fig:morefigs).
+## Example usage
 
-```{r standard-plot, out.width='80%', fig.align='center', fig.cap='Great figure!', fig.height=10}
-plot(mtcars[1:2])
-```
+Select studies or add the sample metadata to the expression data with `recount::add_metadata()` (Figure \@ref(fig:figure2)).
 
-```{r morefigs, out.width='80%', fig.cap='Amazing, right?!', fig.height=5}
-data <- iris
-
-plot(x = data$Sepal.Length, y = data$Sepal.Width, col = data$Species, pch = 19, xlab = "Sepal Length (cm)", ylab = "Sepal Width (cm)")
-
+```{r figure2, out.width='90%', fig.cap='Access recount-brain using the recount Bioconductor package'}
+knitr::include_graphics('Figures/Figure2.png')
 ```
 
 
 
-# Next Steps: More random text
+As an example of how you can use `recount-brain`, we used studies with post mortem interval (PMI) information to assess whether expression of _RNASE2_ is associated with PMI. In studies present in `recount-brain` we did find an overall association as shown in Figure \@ref(fig:figure3) in contrast to [@ferreira2018]'s findings. A sensitivity analysis releaved study variability which is why Ferreira et al likely did not observe this association.
 
-Aliquam sed faucibus risus, quis efficitur erat. Vestibulum semper mauris quis tempus eleifend. Aliquam sagittis dictum ipsum, quis viverra ligula eleifend ut. Curabitur sagittis vitae arcu eget faucibus. In non elementum felis. Duis et aliquam nunc. Nunc pulvinar sapien nunc, vel pretium nisi efficitur in. Fusce fringilla maximus leo et maximus. Fusce at ligula laoreet, iaculis mi at, auctor odio. Praesent sed elementum justo. Aenean consectetur risus rhoncus tincidunt efficitur. Praesent dictum mauris at diam maximus maximus [@thorneposterdown2019].
+```{r figure3, out.width='95%', fig.cap='Replicate findings from other studies using recount-brain'}
+knitr::include_graphics('Figures/Figure3.png')
+```
 
-# Conclusion
+We used `recount-brain` to determine the consistency of gene variability across glioblastoma studies SRP027383 and SRP044668 as well as TCGA (Figure \@ref(fig:figure4)).
 
-Try `posterdown` out! Hopefully you like it!
+```{r figure4, out.width='95%', fig.cap='Assess consistency of gene variability across glioblastoma studies'}
+knitr::include_graphics('Figures/Figure5.png')
+```
+
+# Conclusions
+
+1. `recount-brain` [@razmara2019] facilitates human brain RNA-seq analyses.
+2. `recount-brain` can be used for reproducing analyses, replicating findings and assessing cross-study variability.
+3. Curation efforts are complementary to prediction efforts [@ellis2018] and automatic ontology mapping [@bernstein2017].
+4. Our reproducible curation workflow can be adapted to curate more samples and other studies.
+
 
 # References
+
+```{r, eval = FALSE, include = TRUE, echo = FALSE}
+## install.packages('BiocManager')
+## BiocManager::install('recount')
+recount_brain <- recount::add_metadata(
+  source = 'recount_brain_v2')
+```

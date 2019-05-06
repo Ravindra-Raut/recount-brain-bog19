@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>recount-brain: a curated repository of human brain RNA-seq datasets metadata</title>
+
+
+
+
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Special Elite' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Rasa' rel='stylesheet'>
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+@page {
+size: 36in 48in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 36in;
+height: 48in;
+text-align: justify;
+font-size: 45px;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #FF677124;
+color: #DA2536;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+tbody tr:nth-child(odd) {
+    background-color: #DA253620;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
+  line-height: 1.42857143;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+}
+.references {
+font-size: 23px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+float: left;
+padding: 0px;
+}
+.outer {
+width: 36in;
+height: calc(48in * 0.6325);
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+column-gap: 0;
+padding-left: 0cm;
+padding-right: 0cm;
+/* -webkit-column-rule-width: 50%;
+-moz-column-rule-width: 50%;
+column-rule-width: 50%; */
+-webkit-column-rule-style: none;
+-moz-column-rule-style: none;
+column-rule-style: none;
+-webkit-column-rule-color: black;
+-moz-column-rule-color: black;
+column-rule-color: black;
+background-color: #ffffff;
+font-family: Rasa;
+margin-top: calc(48in * 0.25);
+padding-top: 1em;
+padding-bottom: 1em;
+}
+span.citation {
+  color: #FF6771;
+  font-weight: bold;
+}
+a {
+text-decoration: none;
+color: #FF6771;
+}
+#title {
+font-size: 70pt;
+text-align: left;
+padding-right: 5%;
+padding-left: 5%;
+margin: 0;
+line-height: 98%;
+border-bottom: 0;
+font-weight: normal;
+}
+#author {
+padding-right: 5%;
+padding-left: 5%;
+color: #DA2536;
+margin: 0;
+line-height: 85%;
+font-size: 1.17em;
+}
+#affiliation {
+padding-right: 5%;
+padding-left: 5%;
+padding-top: 1em;
+color: #00000080;
+font-style: italic;
+font-size: 25px;
+margin: 0;
+}
+sup {
+color: #5d19c4;
+}
+.affiliation sup {
+font-size: 20px;
+}
+table {
+  padding-left: 5%;
+  padding-right:; 5%;
+}
+.author {
+text-align: left;
+}
+.author sup {
+font-size: 30px;
+}
+.author_extra {
+padding-right: 5%;
+padding-left: 5%;
+color: #FF6771;
+margin: 0;
+line-height: 85%;
+font-size: 35px;
+text-align: left;
+}
+.outer h1, h2, h3, h4, h5, h6 {
+text-align: center;
+margin-top: 0.5in;
+margin-bottom: 0.5in;
+font-weight: normal;
+}
+.outer h2 {
+text-align: center;
+}
+.outer p, .level2 {
+padding-right: 5%;
+padding-left: 5%;
+color: #000000;
+}
+.outer ol {
+padding-left: 8%;
+padding-right: 8%;
+text-align: left;
+}
+.middle {
+width: 36in;
+height: calc(48in * 0.25);
+position: absolute;
+background-color: #DA2536;
+color: #FFFFFF;
+font-family: Special Elite;
+background-image: linear-gradient(#DA2536 50%, #FF6771);
+}
+.middle strong {
+color: #FFFFFF;
+}
+.middle strong > sup {
+color: #FFFFFF;
+}
+.middle sup {
+color: #FFFFFF;
+}
+#middle-img-left {
+width: 20%;
+left: 0.5in;
+bottom: 0.2in;
+position: absolute;
+opacity: 1
+}
+#middle-img-center {
+width: 10%;
+left: calc(36in * 0.45);
+bottom: 0.5in;
+position: absolute;
+opacity: 0.5
+}
+#middle-img-right {
+width: 10%;
+right: 0.5in;
+bottom: 0.2in;
+position: absolute;
+opacity: 1
+}
+.middle p {
+padding-left: 7%;
+padding-right: 7%;
+font-size: 150px;
+text-align: left;
+}
+.fab {
+color: #00000030;
+font-size: 25px;
+}
+.twitter, i {
+color: #00000030;
+font-size: 35px;
+text-decoration: none;
+}
+a.email {
+text-decoration: none;
+color: #00000030;
+font-size: 35px;
+}
+.envelope {
+color: #00000030;
+font-size: 5px;
+text-decoration: none;
+}
+.poster_wrap {
+width: 36in;
+height: 48in;
+padding: 0cm;
+}
+.emphasis_bottom {
+width: 36in;
+height: calc(48in * 0.1);
+margin-top: calc(48in * 0.9);
+position: absolute;
+background-color: #DA2536;
+background-image: linear-gradient(#FF6771 10%, #DA2536);
+}
+
+span > #tab:mytable {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="column outer">
+<h1 id="title"><strong><em>recount-brain</em>: a curated repository of human brain RNA-seq datasets metadata</strong></h1><br>
+<h3 id="author" class="author">
+
+       <strong>Leonardo Collado-Torres</strong><sup> 6,*</sup><br>
+<a class="twitter" href="https://mobile.twitter.com/fellgernon"><i class="fab fa-twitter"></i>&nbsp;&nbsp;@fellgernon</a><br>
+
+<a class='envelope'><i class="fas fa-envelope"></i></a> <a href="mailto:leo.collado@libd.org" class="email">leo.collado@libd.org</a> <br>
+</h3>
+
+<h5 id="author_extra", class="author_extra">
+Ashkaun Razmara<sup>1</sup>
+ Shannon E Ellis<sup>2</sup>
+ Dustin J Sokolowski<sup>3</sup>
+ Sean Davis<sup>4</sup>
+ Michael D Wilson<sup>3</sup>
+ Jeffrey Leek<sup>5</sup>
+ Andrew E Jaffe<sup>5,6</sup>
+ </h5>
+
+<p id="affiliation" class="affiliation">
+<sup>1</sup> Frank H. Netter MD School of Medicine at Quinnipiac University, North Haven, CT<br> <sup>2</sup> Department of Cognitive Science Department, University of California San Diego, La Jolla, CA<br> <sup>3</sup> Department of Molecular Genetics, University of Toronto<br> <sup>4</sup> Center for Cancer Research, National Cancer Institute, NIH<br> <sup>5</sup> Department of Biostatistics, Johns Hopkins Bloomberg School of Public Health, Baltimore<br> <sup>6</sup> Lieber Institute for Brain Development, Johns Hopkins Medical Campus, Baltimore
+</p>
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<ol style="list-style-type: decimal">
+<li>Uniformly-processed RNA-seq is available in <code>recount2</code> <span class="citation">(Collado-Torres et al. 2017)</span> and other projects;</li>
+<li>Sample metadata from SRA is inconsistent, thus re-using this public data is challenging;</li>
+<li>Metadata can be predicted from expression <span class="citation">(Ellis et al. 2018)</span> and mapped to ontologies <span class="citation">(Bernstein, Doan, and Dewey 2017)</span>.</li>
+</ol>
+</div>
+<div id="methods" class="section level1">
+<h1><span class="header-section-number">2</span> Methods</h1>
+<p>We identified SRA studies present in <code>recount2</code> that had at least 4 samples with at least 70% of them were predicted to correspond to the brain using <code>phenopredict</code> (v0.0.03) <span class="citation">(Ellis et al. 2018)</span>. Figure 6 of <span class="citation">(Razmara et al. 2019)</span> shows the reproducible curation workflow we followed that briefly involved: creating a list of metadata variables of interest, documenting which part of the paper/supplement the information came from, and any custom modifications. We merged <code>recount-brain</code> with GTEx and TCGA brain sample metadata and linked to controlled vocabulary terms for Brodmann region, tissue and disease.</p>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">3</span> Results</h1>
+<p>In total, there are 6,547 samples with metadata in <code>recount-brain</code> with 5,330 (81.4%) present in recount2 from 62 SRA studies, GTEx (n=1,409) and TCGA (n=707). The curated metadata can be interactively explored through <a href="https://jhubiostatistics.shinyapps.io/recount-brain/">jhubiostatistics.shinyapps.io/recount-brain/</a>. Figure <a href="#fig:figure1">3.1</a> exemplifies some of the metadata information available for these studies.</p>
+<div class="figure" style="text-align: center"><span id="fig:figure1"></span>
+<img src="Figures/Figure-1.png" alt="Overview of some recount-brain sample metadata variables" width="100%" />
+<p class="caption">
+Figure 3.1: Overview of some recount-brain sample metadata variables
+</p>
+</div>
+<div id="example-usage" class="section level2">
+<h2><span class="header-section-number">3.1</span> Example usage</h2>
+<p>Select studies or add the sample metadata to the expression data with <code>recount::add_metadata()</code> (Figure <a href="#fig:figure2">3.2</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:figure2"></span>
+<img src="Figures/Figure2.png" alt="Access recount-brain using the recount Bioconductor package" width="90%" />
+<p class="caption">
+Figure 3.2: Access recount-brain using the recount Bioconductor package
+</p>
+</div>
+<p>As an example of how you can use <code>recount-brain</code>, we used studies with post mortem interval (PMI) information to assess whether expression of <em>RNASE2</em> is associated with PMI. In studies present in <code>recount-brain</code> we did find an overall association as shown in Figure <a href="#fig:figure3">3.3</a> in contrast to <span class="citation">(Ferreira et al. 2018)</span>’s findings. A sensitivity analysis releaved study variability which is why Ferreira et al likely did not observe this association.</p>
+<div class="figure" style="text-align: center"><span id="fig:figure3"></span>
+<img src="Figures/Figure3.png" alt="Replicate findings from other studies using recount-brain" width="95%" />
+<p class="caption">
+Figure 3.3: Replicate findings from other studies using recount-brain
+</p>
+</div>
+<p>We used <code>recount-brain</code> to determine the consistency of gene variability across glioblastoma studies SRP027383 and SRP044668 as well as TCGA (Figure <a href="#fig:figure4">3.4</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:figure4"></span>
+<img src="Figures/Figure5.png" alt="Assess consistency of gene variability across glioblastoma studies" width="95%" />
+<p class="caption">
+Figure 3.4: Assess consistency of gene variability across glioblastoma studies
+</p>
+</div>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusions</h1>
+<ol style="list-style-type: decimal">
+<li><code>recount-brain</code> <span class="citation">(Razmara et al. 2019)</span> facilitates human brain RNA-seq analyses.</li>
+<li><code>recount-brain</code> can be used for reproducing analyses, replicating findings and assessing cross-study variability.</li>
+<li>Curation efforts are complementary to prediction efforts <span class="citation">(Ellis et al. 2018)</span> and automatic ontology mapping <span class="citation">(Bernstein, Doan, and Dewey 2017)</span>.</li>
+<li>Our reproducible curation workflow can be adapted to curate more samples and other studies.</li>
+</ol>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-bernstein2017">
+<p>Bernstein, Matthew N., AnHai Doan, and Colin N. Dewey. 2017. “MetaSRA: Normalized Human Sample-Specific Metadata for the Sequence Read Archive.” <em>Bioinformatics</em> 33 (18): 2914–23. <a href="https://doi.org/10.1093/bioinformatics/btx334">https://doi.org/10.1093/bioinformatics/btx334</a>.</p>
+</div>
+<div id="ref-collado2017">
+<p>Collado-Torres, Leonardo, Abhinav Nellore, Kai Kammers, Shannon E. Ellis, Margaret A. Taub, Kasper D. Hansen, Andrew E. Jaffe, Ben Langmead, and Jeffrey T. Leek. 2017. “Reproducible RNA-Seq Analysis Using Recount2.” <em>Nature Biotechnology</em> 35 (4): 319–21. <a href="https://doi.org/10.1038/nbt.3838">https://doi.org/10.1038/nbt.3838</a>.</p>
+</div>
+<div id="ref-ellis2018">
+<p>Ellis, Shannon E., Leonardo Collado-Torres, Andrew Jaffe, and Jeffrey T. Leek. 2018. “Improving the Value of Public RNA-Seq Expression Data by Phenotype Prediction.” <em>Nucleic Acids Research</em> 46 (9): e54–e54. <a href="https://doi.org/10.1093/nar/gky102">https://doi.org/10.1093/nar/gky102</a>.</p>
+</div>
+<div id="ref-ferreira2018">
+<p>Ferreira, Pedro G., Manuel Muñoz-Aguirre, Ferran Reverter, Caio P. Sá Godinho, Abel Sousa, Alicia Amadoz, Reza Sodaei, et al. 2018. “The Effects of Death and Post-Mortem Cold Ischemia on Human Tissue Transcriptomes.” <em>Nature Communications</em> 9 (1): 490. <a href="https://doi.org/10.1038/s41467-017-02772-x">https://doi.org/10.1038/s41467-017-02772-x</a>.</p>
+</div>
+<div id="ref-razmara2019">
+<p>Razmara, Ashkaun, Shannon E. Ellis, Dustin J. Sokolowski, Sean Davis, Michael D. Wilson, Jeffrey T. Leek, Andrew E. Jaffe, and Leonardo Collado-Torres. 2019. “Recount-Brain: A Curated Repository of Human Brain RNA-Seq Datasets Metadata.” <em>bioRxiv</em>, April, 618025. <a href="https://doi.org/10.1101/618025">https://doi.org/10.1101/618025</a>.</p>
+</div>
+</div>
+</div>
+
+</div>
+<div class="column middle">
+<p><img src="Figures/recount_brain.png" /> Analysis-ready human curated sample metadata for brain RNA-seq studies</p>
+</div>
+<div class="emphasis_bottom">
+<img id="middle-img-left" src=Figures/LIBD_logo.jpg>
+<img id="middle-img-center" src=>
+<img id="middle-img-right" src="Figures/qr_imglg.png">
+</div>
+</div>
+
+
+
+</body>
+</html>
