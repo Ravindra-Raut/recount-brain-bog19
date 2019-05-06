@@ -1,11 +1,13 @@
 recount-brain: a curated repository of human brain RNA-seq datasets metadata
 ============================================================================
 
-This repository contains the raw files and rendered poster describing the [`recount-brain` project](https://github.com/LieberInstitute/recount-brain) for [Biology of Genomes 2019](https://meetings.cshl.edu/meetings.aspx?meet=GENOME&year=19). This poster was made using [posterdown](https://github.com/brentthorne/posterdown) version 0.1.2.9000 and by customizing the `posterdown_betterport` template provided in that R package. 
+This repository contains the raw files and rendered poster describing the [`recount-brain` project](https://github.com/LieberInstitute/recount-brain) for [Biology of Genomes 2019](https://meetings.cshl.edu/meetings.aspx?meet=GENOME&year=19). This poster was made using [posterdown](https://github.com/brentthorne/posterdown) version 0.1.2.9000 and by customizing the `posterdown_betterport` template provided in that R package.
 
 To view the poster, go to [https://lcolladotor.github.io/recount-brain-bog19/](https://lcolladotor.github.io/recount-brain-bog19/) or alternatively open the [PDF file](recount-brain-bog19.pdf) which was created using the "print" option with Google Chrome Version 73.0.3683.103 (Official Build) (64-bit).
 
-![](Figures/qr_imglg.png)
+The `recount-brain` project is further described in [Razmara, et al., bioRxiv, 2019](https://www.biorxiv.org/content/10.1101/618025v1).
+
+[![](Figures/qr_imglg.png)](https://www.biorxiv.org/content/10.1101/618025v1)
 
 
 ## Reproducibility and Citation
