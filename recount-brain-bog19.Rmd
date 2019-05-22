@@ -25,7 +25,7 @@ author:
     main: true
     orcid: '0000-0003-2140-308X'
     twitter: fellgernon
-    email: leo.collado@libd.org
+    email: lcolladotor@gmail.com
 affiliation:
   - num: 1
     address: Frank H. Netter MD School of Medicine at Quinnipiac University, North Haven, CT
