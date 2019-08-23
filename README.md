@@ -1,5 +1,6 @@
 recount-brain: a curated repository of human brain RNA-seq datasets metadata
 ============================================================================
+[![DOI](https://zenodo.org/badge/185244554.svg)](https://zenodo.org/badge/latestdoi/185244554)
 
 This repository contains the raw files and rendered poster describing the [`recount-brain` project](https://github.com/LieberInstitute/recount-brain) for [Biology of Genomes 2019](https://meetings.cshl.edu/meetings.aspx?meet=GENOME&year=19) (Poster 63, Session 1, Wednesday May 8th 2018 at 2 pm). This poster was made using [posterdown](https://github.com/brentthorne/posterdown) version 0.1.2.9000 and by customizing the `posterdown_betterport` template provided in that R package.
 
